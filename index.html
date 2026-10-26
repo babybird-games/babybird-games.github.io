@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>babybird</title>
+<meta name="description" content="babybird makes small, cheerful games. Bloat Float: puff up, sink down, dodge everything the sea throws at a little pufferfish.">
+<link rel="icon" href="bloat-float-icon.png">
+<style>
+  :root {
+    --bg: #eaf6fb; --card: #ffffff; --ink: #0d2a3a; --muted: #4c6b7c;
+    --accent: #ff8a3d; --line: #cfe6ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #071822; --card: #0e2735; --ink: #e6f4fa; --muted: #9ab8c6;
+      --accent: #ffa363; --line: #1d3f52; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 56px; }
+  .logo { display: block; width: min(280px, 70vw); height: auto; margin: 0 auto 32px; }
+  .game { display: flex; gap: 20px; align-items: center; background: var(--card);
+    border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+  .game img { width: 112px; height: 112px; border-radius: 24px; flex: none; }
+  h1 { margin: 0 0 4px; font-size: 1.6rem; }
+  p { margin: 0 0 12px; color: var(--muted); }
+  .btn { display: inline-block; background: var(--accent); color: #1b0f05; font-weight: 600;
+    padding: 10px 18px; border-radius: 999px; text-decoration: none; }
+  footer { margin-top: 32px; text-align: center; font-size: .9rem; color: var(--muted); }
+  footer a { color: inherit; }
+  @media (max-width: 480px) { .game { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="logo.png" alt="babybird">
+  <section class="game">
+    <img src="bloat-float-icon.png" alt="Bloat Float icon">
+    <div>
+      <h1>Bloat Float</h1>
+      <p>Puff up to rise, let go to sink. Guide a little pufferfish from the sunny shallows
+        down to the abyss, past sharks, ships, jellyfish and something very big lurking in the dark.</p>
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.babybird.bloatfloat">Get it on Google Play</a>
+    </div>
+  </section>
+  <footer>
+    <a href="privacy.html">Privacy policy</a> · © 2026 babybird
+  </footer>
+</main>
+</body>
+</html>
