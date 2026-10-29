@@ -5,47 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>babybird</title>
 <meta name="description" content="babybird makes small, cheerful games. Bloat Float: puff up, sink down, dodge everything the sea throws at a little pufferfish.">
+<meta property="og:title" content="Bloat Float by babybird">
+<meta property="og:description" content="Hold to puff up and rise, let go to sink. Guide a pufferfish from the sunny shallows down to the abyss.">
+<meta property="og:image" content="https://babybird-games.github.io/banner.jpg">
 <link rel="icon" href="bloat-float-icon.png">
 <style>
+  @font-face { font-family: "Lilita One"; src: url("fonts/LilitaOne-Regular.ttf") format("truetype"); font-display: swap; }
+  @font-face { font-family: "Fredoka"; src: url("fonts/Fredoka.ttf") format("truetype"); font-weight: 300 700; font-display: swap; }
   :root {
     --bg: #eaf6fb; --card: #ffffff; --ink: #0d2a3a; --muted: #4c6b7c;
-    --accent: #ff8a3d; --line: #cfe6ef;
+    --gold: #ffd44d; --coral: #ff8566; --orange: #ff8a3d; --navy: #08203d; --line: #cfe6ef;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #071822; --card: #0e2735; --ink: #e6f4fa; --muted: #9ab8c6;
-      --accent: #ffa363; --line: #1d3f52; }
+    :root { --bg: #071822; --card: #0e2735; --ink: #e6f4fa; --muted: #9ab8c6; --line: #1d3f52; }
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 56px; }
-  .logo { display: block; width: min(280px, 70vw); height: auto; margin: 0 auto 32px; }
-  .game { display: flex; gap: 20px; align-items: center; background: var(--card);
-    border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
-  .game img { width: 112px; height: 112px; border-radius: 24px; flex: none; }
-  h1 { margin: 0 0 4px; font-size: 1.6rem; }
-  p { margin: 0 0 12px; color: var(--muted); }
-  .btn { display: inline-block; background: var(--accent); color: #1b0f05; font-weight: 600;
-    padding: 10px 18px; border-radius: 999px; text-decoration: none; }
-  footer { margin-top: 32px; text-align: center; font-size: .9rem; color: var(--muted); }
+    font: 17px/1.55 "Fredoka", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 1120px; margin: 0 auto; padding: 20px 16px 40px; }
+  .display { font-family: "Lilita One", "Fredoka", sans-serif; font-weight: 400; letter-spacing: .01em; }
+  /* Title text in the game's style: gold / coral fill with a thick navy outline. */
+  .outlined { -webkit-text-stroke: .16em var(--navy); paint-order: stroke fill;
+    text-shadow: 0 .08em 0 rgba(0, 8, 20, .35); }
+
+  header { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    margin-bottom: 20px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; }
+  .brand img { width: min(300px, 62vw); height: auto; display: block; }
+  .brand span { font-size: 1.05rem; color: var(--muted); }
+  nav { display: flex; gap: 8px; }
+  nav a { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card);
+    color: var(--ink); text-decoration: none; font-weight: 500; }
+  nav a:hover { border-color: var(--orange); }
+
+  .banner { display: block; width: 100%; height: auto; border-radius: 22px; border: 1px solid var(--line); }
+
+  .game { display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center;
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px; margin-top: 20px; }
+  .game > * { min-width: 0; }
+  .game > img { width: 104px; height: 104px; border-radius: 24px; }
+  h1 { margin: 0 0 6px; font-size: 2.4rem; line-height: 1.1; }
+  h1 .b { color: var(--gold); } h1 .f { color: var(--coral); }
+  p { margin: 0; color: var(--muted); }
+
+  .play { display: inline-flex; align-items: center; gap: 12px; padding: 10px 22px 10px 16px;
+    border-radius: 16px; background: #000; color: #fff; text-decoration: none; border: 1px solid #555; }
+  .play svg { width: 30px; height: 30px; flex: none; }
+  .play small { display: block; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; opacity: .85; }
+  .play b { display: block; font-size: 1.3rem; font-weight: 600; line-height: 1.1; }
+  .cta { text-align: center; }
+  .cta .note { display: block; margin-top: 8px; color: var(--muted); font-size: .9rem; }
+
+  .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+  .features div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
+  .features h3 { margin: 0 0 4px; font-size: 1.35rem; color: var(--orange); }
+
+  h2 { margin: 32px 0 14px; font-size: 1.8rem; }
+  .shots { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .shots a { display: block; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); background: var(--card); }
+  .shots img { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; transition: transform .2s; }
+  .shots a:hover img { transform: scale(1.03); }
+
+  footer { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .95rem; }
   footer a { color: inherit; }
-  @media (max-width: 480px) { .game { flex-direction: column; text-align: center; } }
+
+  @media (max-width: 860px) {
+    .game { grid-template-columns: auto 1fr; }
+    .cta { grid-column: 1 / -1; }
+    .features { grid-template-columns: 1fr; }
+    .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brand span { display: none; }
+  }
+  @media (max-width: 520px) {
+    header { justify-content: center; }
+    .game { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+    footer { justify-content: center; text-align: center; }
+  }
 </style>
 </head>
 <body>
 <main>
-  <img class="logo" src="logo.png" alt="babybird">
-  <section class="game">
+  <header>
+    <a class="brand" href="./"><img src="logo.png" alt="babybird"><span>Small, cheerful games</span></a>
+    <nav>
+      <a href="#bloat-float">Games</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:babybird.game.studio@gmail.com">Contact</a>
+    </nav>
+  </header>
+
+  <img class="banner" src="banner.jpg" width="1024" height="500"
+    alt="Bloat Float logo with a yellow pufferfish and sea creatures from the shallows to the abyss">
+
+  <section class="game" id="bloat-float">
     <img src="bloat-float-icon.png" alt="Bloat Float icon">
     <div>
-      <h1>Bloat Float</h1>
+      <h1 class="display outlined"><span class="b">Bloat</span> <span class="f">Float</span></h1>
       <p>Puff up to rise, let go to sink. Guide a little pufferfish from the sunny shallows
         down to the abyss, past sharks, ships, jellyfish and something very big lurking in the dark.</p>
-      <a class="btn" href="https://play.google.com/store/apps/details?id=com.babybird.bloatfloat">Get it on Google Play</a>
+    </div>
+    <div class="cta">
+      <a class="play" href="https://play.google.com/store/apps/details?id=com.babybird.bloatfloat">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M5 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 5 3.5z"/></svg>
+        <span><small>Coming soon to</small><b>Google Play</b></span>
+      </a>
+      <span class="note">Android · in closed testing now</span>
     </div>
   </section>
+
+  <section class="features">
+    <div><h3 class="display">One finger</h3><p>Hold anywhere to swell up and float. Let go to shrink and sink. Big is easy to lift, small slips through gaps.</p></div>
+    <div><h3 class="display">Four seas</h3><p>Shallows, reef shelf, open sea and the dark abyss, each with its own hazards, and the Bloop waiting at the bottom.</p></div>
+    <div><h3 class="display">Dress your puffer</h3><p>Over 40 achievements, each unlocking a skin, hat or piece of gear that changes how your fish swims.</p></div>
+  </section>
+
+  <h2 class="display">Screenshots</h2>
+  <section class="shots">
+    <a href="screens/01_shallows.jpg"><img src="screens/01_shallows.jpg" loading="lazy" alt="Hold to puff up, let go to sink: the puffer in the sunny shallows as a seabird dives in"></a>
+    <a href="screens/02_reef_shelf.jpg"><img src="screens/02_reef_shelf.jpg" loading="lazy" alt="Dodging a fishing hook, a hammerhead and a snapping plant on the reef shelf"></a>
+    <a href="screens/03_open_sea.jpg"><img src="screens/03_open_sea.jpg" loading="lazy" alt="A grinning great white shark next to the puffer in the open sea"></a>
+    <a href="screens/04_abyss.jpg"><img src="screens/04_abyss.jpg" loading="lazy" alt="A huge shark gliding over the puffer in the dark abyss"></a>
+    <a href="screens/05_bloop.jpg"><img src="screens/05_bloop.jpg" loading="lazy" alt="The puffer at the edge of the Bloop's giant open mouth"></a>
+    <a href="screens/06_wardrobe.jpg"><img src="screens/06_wardrobe.jpg" loading="lazy" alt="The wardrobe with the rainbow True Gamer skin"></a>
+    <a href="screens/07_trophies.jpg"><img src="screens/07_trophies.jpg" loading="lazy" alt="The trophies screen with achievements that unlock items"></a>
+    <a href="screens/08_revive.jpg"><img src="screens/08_revive.jpg" loading="lazy" alt="The Swim on? revive screen"></a>
+  </section>
+
   <footer>
-    <a href="privacy.html">Privacy policy</a> · © 2026 babybird
+    <span>© 2026 babybird</span>
+    <span><a href="privacy.html">Privacy policy</a> · <a href="mailto:babybird.game.studio@gmail.com">babybird.game.studio@gmail.com</a></span>
   </footer>
 </main>
 </body>
