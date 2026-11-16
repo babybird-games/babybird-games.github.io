@@ -23,6 +23,10 @@ hanafuda/
   index.html
   privacy.html
   icon.png
+capy-up/
+  index.html
+  privacy.html
+  icon.png
 ```
 
 ## Adding a new app
@@ -59,6 +63,7 @@ copied page works as soon as its folder exists.
 | `/privacy.html` | Bloat Float's Play Console entry still points here. It stays online with the full policy and a note pointing to `/bloat-float/privacy.html`. Update the Play Console URL first; only then may this page be retired. Until then, change it together with `bloat-float/privacy.html`. |
 | `/banner.jpg`, `/bloat-float-icon.png`, `/screens/*.jpg` | Legacy copies of the Bloat Float images from before the per-app folders, kept so old links keep working. New pages use the files in `bloat-float/`. |
 | `/hanafuda/privacy.html` | Hanafuda's privacy policy URL in Play Console. |
+| `/capy-up/privacy.html` | Capy Up's privacy policy URL in Play Console. |
 
 `.gdignore` stops the Godot editor from importing this folder when it sits inside a Godot
 project; it does nothing on the website.

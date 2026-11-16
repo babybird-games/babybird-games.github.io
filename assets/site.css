@@ -5,6 +5,7 @@
  *   (none)          studio colours (home page)
  *   theme-bloat     Bloat Float
  *   theme-hanafuda  Hanafuda: Yokai Realm
+ *   theme-capy-up   Capy Up: Stack to Space
  * A new app adds one theme block below (light + dark) and nothing else.
  */
 
@@ -39,6 +40,13 @@
 }
 @media (prefers-color-scheme: dark) {
   .theme-hanafuda { --bg: #140c1c; --card: #21152b; --ink: #f3e8ee; --muted: #b9a5b0; --line: #3a2740; --accent: #ff6b7f; --accent-2: #7fcf98; --link: #ff8fa3; }
+}
+.theme-capy-up {
+  --bg: #e9f6f1; --card: #ffffff; --ink: #3b2a1e; --muted: #6d5c4e; --line: #cfe6dc;
+  --accent: #ffa42e; --accent-2: #4fb3a8; --link: #b85c0a;
+}
+@media (prefers-color-scheme: dark) {
+  .theme-capy-up { --bg: #10201f; --card: #182c2a; --ink: #f4ece2; --muted: #b3a797; --line: #2a4441; --accent: #ffb347; --accent-2: #6fd0c4; --link: #ffc27a; }
 }
 
 /* ---------- Base ---------- */
