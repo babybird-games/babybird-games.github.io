@@ -6,7 +6,7 @@ Static site for the babybird studio, served by GitHub Pages from the `main` bran
 ## Layout
 
 ```
-index.html            Studio home: one card per app
+index.html            Studio home: one card per app, in a Games and an Apps section
 assets/site.css       Shared styles and per-app colour themes (light + dark)
 fonts/                Shared web fonts (Lilita One, Fredoka; OFL licences included)
 logo.png              Studio logo
@@ -27,6 +27,13 @@ capy-up/
   index.html
   privacy.html
   icon.png
+livewaifu/            Live Waifu Wallpapers (an app, not a game)
+  index.html
+  privacy.html
+  terms.html
+  icon.png
+  banner.jpg
+  screens/*.jpg
 ```
 
 ## Adding a new app
@@ -45,8 +52,10 @@ Use a short, lowercase, hyphenated folder name (`my-game/`). Its URLs become
    non-link `<span class="play">` with "Coming soon to".
 5. **Edit the privacy page** for what the app really does (ads, purchases, network, saves).
    Update the "Last updated" date whenever the text changes.
-6. **List it on the home page:** copy one `<article class="card app-card …">` in `index.html`,
-   set its theme class, icon, name, status label and the two links.
+6. **List it on the home page:** copy one `<article class="card app-card …">` in `index.html`
+   into the `#games` or the `#apps` section, and set its theme class, icon, name, status label
+   and links. Apps for adults carry an extra `18+` status label. On an app's own page the
+   header's first link points to `../#apps` instead of `../#games`.
 7. **Check locally** (`python -m http.server` in this folder, then open
    <http://localhost:8000/>), at phone width and in dark mode, then commit and push to `main`.
 8. **Give Play Console** `https://babybird-games.github.io/my-game/privacy.html` as the
@@ -64,6 +73,7 @@ copied page works as soon as its folder exists.
 | `/banner.jpg`, `/bloat-float-icon.png`, `/screens/*.jpg` | Legacy copies of the Bloat Float images from before the per-app folders, kept so old links keep working. New pages use the files in `bloat-float/`. |
 | `/hanafuda/privacy.html` | Hanafuda's privacy policy URL in Play Console. |
 | `/capy-up/privacy.html` | Capy Up's privacy policy URL in Play Console. |
+| `/livewaifu/privacy.html` | Live Waifu Wallpapers' privacy policy URL in Play Console. |
 
 `.gdignore` stops the Godot editor from importing this folder when it sits inside a Godot
 project; it does nothing on the website.
