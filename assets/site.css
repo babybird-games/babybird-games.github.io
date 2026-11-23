@@ -6,6 +6,7 @@
  *   theme-bloat     Bloat Float
  *   theme-hanafuda  Hanafuda: Yokai Realm
  *   theme-capy-up   Capy Up: Stack to Space
+ *   theme-livewaifu Live Waifu Wallpapers
  * A new app adds one theme block below (light + dark) and nothing else.
  */
 
@@ -47,6 +48,13 @@
 }
 @media (prefers-color-scheme: dark) {
   .theme-capy-up { --bg: #10201f; --card: #182c2a; --ink: #f4ece2; --muted: #b3a797; --line: #2a4441; --accent: #ffb347; --accent-2: #6fd0c4; --link: #ffc27a; }
+}
+.theme-livewaifu {
+  --bg: #f1eef8; --card: #ffffff; --ink: #1d1838; --muted: #5f5a7a; --line: #ddd7ee;
+  --accent: #8a5cf6; --accent-2: #f4b860; --link: #5b34c9;
+}
+@media (prefers-color-scheme: dark) {
+  .theme-livewaifu { --bg: #0e0c1e; --card: #19162f; --ink: #eeeaf8; --muted: #aaa4c4; --line: #2e2950; --accent: #a58bff; --accent-2: #f6c77c; --link: #b9a4ff; }
 }
 
 /* ---------- Base ---------- */
